@@ -12,7 +12,7 @@ export default function Hero() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-balance">
             <Typewriter
               text="Transforming Beauty Businesses through Digital Power"
-              className="bg-gradient-brand bg-clip-text text-transparent"
+              className="text-gradient-golden"
               aria-label="Transforming Beauty Businesses through Digital Power"
             />
           </h1>
