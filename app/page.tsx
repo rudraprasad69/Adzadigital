@@ -204,9 +204,9 @@ export default function Page() {
       <Section id="pricing" bg="brand" title="Pricing Packages" subtitle="Simple plans that scale with you">
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
           {[ 
-            ["Basic", "Social Media Posts + Local SEO", "₹", "Best for new salons", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\"></path></svg>`],
-            ["Standard", "Posts + Ads + Engagement Campaigns", "₹₹", "Balanced growth", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"></path></svg>`],
-            ["Premium", "Complete Marketing + Website + Ads", "₹₹₹", "Aggressive growth", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12s2.545-8 7-8 7 8 7 8-2.545 8-7 8-7-8-7-8z\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle></svg>`],
+            ["Basic", "Social Media Posts + Local SEO", "₹10,000/-", "Best for new salons", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\"></path></svg>`],
+            ["Standard", "Posts + Ads + Engagement Campaigns", "₹15,500/-", "Balanced growth", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"></path></svg>`],
+            ["Premium", "Complete Marketing + Website + Ads", "₹25,000/-", "Aggressive growth", `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12s2.545-8 7-8 7 8 7 8-2.545 8-7 8-7-8-7-8z\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle></svg>`],
           ].map(([name, desc, symbol, note, icon]) => (
             <div key={name as string} className="pricing-card interactive p-6">
               <div className="flex items-center gap-4">
@@ -217,8 +217,14 @@ export default function Page() {
               <p className="mt-4 text-4xl text-gradient-brand">{symbol}</p>
               <p className="text-sm text-muted-foreground">{note}</p>
               <div className="mt-6">
-                <Button variant="gradient" className="w-full interactive">
-                  Choose {name}
+                <Button variant="gradient" asChild className="w-full interactive">
+                  <a 
+                    href={`https://wa.me/919265556510?text=${encodeURIComponent(`Hello! I am interested in the ${name} Plan.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Choose {name}
+                  </a>
                 </Button>
               </div>
             </div>
