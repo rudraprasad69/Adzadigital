@@ -14,51 +14,36 @@ if (typeof window !== "undefined") {
         dispatchEvent: function () {
           return false
         },
-      }
+      } as unknown as MediaQueryList
     }
   } else {
+    // Only patch the prototype if necessary, do not wrap the function
     try {
-      const originalMatchMedia = window.matchMedia
-      window.matchMedia = function (query) {
-        try {
-          const mql = originalMatchMedia.call(window, query)
-          if (!mql) {
-            return {
-              matches: false,
-              media: query,
-              onchange: null,
-              addListener: function () {},
-              removeListener: function () {},
-              addEventListener: function () {},
-              removeEventListener: function () {},
-              dispatchEvent: function () {
-                return false
-              },
-            }
-          }
-          // Ensure all listener methods exist
-          if (!mql.addListener) mql.addListener = function () {}
-          if (!mql.removeListener) mql.removeListener = function () {}
-          if (!mql.addEventListener) mql.addEventListener = function () {}
-          if (!mql.removeEventListener) mql.removeEventListener = function () {}
-          return mql
-        } catch (e) {
-          return {
-            matches: false,
-            media: query,
-            onchange: null,
-            addListener: function () {},
-            removeListener: function () {},
-            addEventListener: function () {},
-            removeEventListener: function () {},
-            dispatchEvent: function () {
-              return false
-            },
-          }
+      const mql = window.matchMedia("(min-width: 1px)")
+      const mqlProto = Object.getPrototypeOf(mql)
+      
+      if (!mqlProto.addEventListener && mqlProto.addListener) {
+        mqlProto.addEventListener = function(type: string, listener: any) {
+          if (type === 'change') this.addListener(listener)
+        }
+      }
+      if (!mqlProto.removeEventListener && mqlProto.removeListener) {
+        mqlProto.removeEventListener = function(type: string, listener: any) {
+          if (type === 'change') this.removeListener(listener)
+        }
+      }
+      if (!mqlProto.addListener && mqlProto.addEventListener) {
+        mqlProto.addListener = function(listener: any) {
+          this.addEventListener('change', listener)
+        }
+      }
+      if (!mqlProto.removeListener && mqlProto.removeEventListener) {
+        mqlProto.removeListener = function(listener: any) {
+          this.removeEventListener('change', listener)
         }
       }
     } catch (e) {
-      console.warn("Failed to polyfill matchMedia:", e)
+      console.warn("Failed to polyfill matchMedia prototype:", e)
     }
   }
 }

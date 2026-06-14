@@ -33,10 +33,19 @@ export default function Navbar() {
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="#" className="flex items-center gap-3 hover-flash">
-            <Image src="/images/logo.png" alt="Adza Digital logo" width={36} height={36} priority />
-            <span className="font-semibold tracking-wide text-lg">Adza Digital</span>
+        <div className="flex h-20 items-center justify-between">
+          <Link href="#" className="flex items-center gap-3 group interactive">
+            <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Image 
+                src="/images/logo.png" 
+                alt="Adza Digital logo icon" 
+                width={64} 
+                height={64} 
+                priority 
+                className="object-contain mix-blend-darken" 
+              />
+            </div>
+            <span className="font-extrabold tracking-tight text-2xl text-gradient-brand">Adza Digital</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             {links.map((l) => (
