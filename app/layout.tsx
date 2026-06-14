@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Suspense } from "react"
 import "./globals.css"
 import { Poppins } from "next/font/google"
+import MatchMediaPolyfill from "@/components/ui/match-media-polyfill"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${poppins.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+        <MatchMediaPolyfill />
         <Suspense fallback={<div>Loading...</div>}>
           <header className="sticky top-0 z-50 w-full border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/55 animate-in fade-in slide-in-from-top-2">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
